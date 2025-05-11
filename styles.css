@@ -1,0 +1,145 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #839c58; /* Verde musgo */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    color: #333;
+}
+
+.banner {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+    width: 500px;
+}
+
+.form-container {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+h1 {
+    color: #556B2F;
+    margin-bottom: 10px;
+}
+
+p {
+    margin: 0 0 20px 0;
+    color: #555;
+}
+
+form input, form textarea, form select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+button {
+    background: #c18700; /* Mostaza */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #e0a200; /* Mostaza más oscuro al hacer hover */
+}
+
+#respuesta {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+/* Selects con estilo normal */
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc; /* Color normal */
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background-color: #fff;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="gray" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px 16px;
+    padding-right: 40px;
+}
+
+/* Solo muestra el borde rojo después de intentar enviar */
+.was-validated select:invalid {
+    border-color: #e53935; /* Rojo solo tras validación */
+}
+
+
+/* Modal de confirmación */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.modal-content button {
+    background: #556B2F;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background: #445522;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 20px;
+    }
+    .banner {
+        width: 90%;
+    }
+}
+
+
+
