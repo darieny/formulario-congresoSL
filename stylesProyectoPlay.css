@@ -44,5 +44,25 @@ body {
     }
 }
 
+/* Estilos para texto de Descripcion */
+.descripcion-proyectoplay {
+    background-color: #0e4d28; /* Color de fondo solicitado */
+    color: #d5dcbb;            /* Texto blanco para mejor contraste */
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.descripcion-proyectoplay h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.descripcion-proyectoplay p {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 1.1em;
+}
 
 

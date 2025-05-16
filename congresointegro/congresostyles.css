@@ -7,44 +7,80 @@ body {
     color: #333;
 }
 
-h1 {
-    margin-top: 60px;
+ /*Estilo base para computadoras y pantallas grandes*/ 
+.bannerCongreso-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* Media Queries para un ajuste más fino en móviles */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .bannerCongreso-img {
+        max-height: 60vh;
+        object-position: center top;
+    }
+}
+
+/* Teléfonos grandes */
+@media (max-width: 668px) {
+    .bannerCongreso-img {
+        max-height: 50vh;
+    }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 480px) {
+    .bannerCongreso-img {
+        max-height: 40vh;
+    }
+}
+
+/* Estilos para texto de Descripcion */
+
+.descripcion-congreso {
+    background-color: #0e4d28; /* Color de fondo solicitado */
+    color: #d5dcbb;            /* Texto blanco para mejor contraste */
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.descripcion-congreso h2 {
     font-size: 2.5em;
-    color: #2196F3;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
-p {
-    font-size: 1.2em;
-    margin: 20px 0;
+.descripcion-congreso p {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 1.1em;
 }
 
-.btn {
+/* Botón para registrarte */
+.btn-registrate {
     display: inline-block;
     padding: 15px 30px;
-    background-color: #2196F3;
-    color: white;
+    background-color: #d5dcbb; /* Un tono mostaza/dorado que resalta sobre el verde */
+    color: #0e4d28;            /* Texto en verde musgo */
     text-decoration: none;
     border-radius: 8px;
-    font-size: 1em;
-    transition: background 0.3s;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.3s;
+    margin-top: 30px;
 }
 
-.btn:hover {
-    background-color: #1976D2;
+.btn-registrate:hover {
+    background-color: #b68c03; /* Color más oscuro al pasar el mouse */
+    transform: scale(1.05);    /* Pequeño efecto de crecimiento */
 }
 
-.preregistro-img {
-    width: 100%;          /* Ocupa todo el ancho disponible */
-    max-width: 1300px;     /* Máximo ancho en pantallas grandes (puedes ajustar este valor) */
-    height: auto;         /* Mantiene la proporción de la imagen */
-    cursor: pointer;
-    display: block;       /* Elimina espacios en línea y centra correctamente */
-    margin: 20px auto;    /* Centra la imagen horizontalmente y agrega espacio vertical */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Efecto hover */
-.preregistro-img:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
