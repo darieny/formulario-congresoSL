@@ -5,30 +5,44 @@ body {
     padding: 0;
     background-color: #f0f4f8;
     color: #333;
+    overflow-x: visible;
 }
 
-h1 {
-    margin-top: 60px;
-    font-size: 2.5em;
-    color: #4CAF50;
+ /*Estilo base para computadoras y pantallas grandes*/ 
+.congresointegro-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
 }
 
-p {
-    font-size: 1.2em;
-    margin: 20px 0;
+/* Media Queries para un ajuste más fino en móviles */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .congresointegro-img {
+        max-height: 60vh;
+        object-position: center top;
+    }
 }
 
-.btn {
-    display: inline-block;
-    padding: 15px 30px;
-    background-color: #4CAF50;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 1em;
-    transition: background 0.3s;
+/* Teléfonos grandes */
+@media (max-width: 668px) {
+    .congresointegro-img {
+        max-height: 50vh;
+    }
 }
 
-.btn:hover {
-    background-color: #45a049;
+/* Teléfonos pequeños */
+@media (max-width: 480px) {
+    .congresointegro-img {
+        max-height: 40vh;
+    }
 }
+
+
+

@@ -32,3 +32,19 @@ p {
 .btn:hover {
     background-color: #1976D2;
 }
+
+.preregistro-img {
+    width: 100%;          /* Ocupa todo el ancho disponible */
+    max-width: 1300px;     /* Máximo ancho en pantallas grandes (puedes ajustar este valor) */
+    height: auto;         /* Mantiene la proporción de la imagen */
+    cursor: pointer;
+    display: block;       /* Elimina espacios en línea y centra correctamente */
+    margin: 20px auto;    /* Centra la imagen horizontalmente y agrega espacio vertical */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover */
+.preregistro-img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
