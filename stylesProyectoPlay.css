@@ -65,4 +65,49 @@ body {
     font-size: 1.1em;
 }
 
+/* Estilos para Mapa y Redes Sociales */
+
+.ubicacion-redes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #0e4d28;
+    color: #d5dcbb;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.mapa, .redes-sociales {
+    flex: 1 1 300px;
+    max-width: 500px;
+    margin: 20px;
+}
+
+.redes-sociales h3 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.redes-sociales a {
+    display: inline-block;
+    color: #c18700; /* Color mostaza */
+    text-decoration: none;
+    font-size: 1.2em;
+    margin: 10px 0;
+    transition: color 0.3s;
+}
+
+.redes-sociales a:hover {
+    color: #d9a800; /* Un poco más oscuro en hover */
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .ubicacion-redes {
+        flex-direction: column;
+    }
+}
+
+
 
