@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal Barbacoa</title>
+  <link rel="stylesheet" href="./portalbarbacoa.css" />
+</head>
+<body>
+
+  <main class="wrap">
+    <section class="card">
+      <h1>Portal Barbacoa</h1>
+      <p class="sub">Registra ventas por persona. El Excel se actualiza automáticamente.</p>
+
+      <form id="formBarbacoa" class="form">
+
+        <label>
+          Ministerio
+          <select name="ministerio" required>
+            <option value="" selected disabled>Selecciona…</option>
+            <option>Proyecto Play</option>
+            <option>Cantera</option>
+            <option>Damas</option>
+            <option>Caballeros</option>
+            <option>Células Poptun</option>
+          </select>
+        </label>
+
+        <label>
+          Nombre del líder
+          <input id="liderInput" name="lider" type="text" list="lideresList" placeholder="Ej: María López" required />
+          <datalist id="lideresList"></datalist>
+          <small class="hint">⚠️ Si ya te aparece el nombre en sugerencias, selecciónalo. No lo vuelvas a agregar.</small>
+        </label>
+
+        <label>
+          Nombre de la persona
+          <input id="personaInput" name="persona" type="text" list="personasList" placeholder="Ej: Darieny" required />
+          <datalist id="personasList"></datalist>
+          <small class="hint">⚠️ Si ya te aparece el nombre en sugerencias, selecciónalo. No lo vuelvas a agregar.</small>
+        </label>
+
+        <fieldset class="group">
+          <legend>Tipo de barbacoa</legend>
+          <label class="radio">
+            <input type="radio" name="barbacoa" value="Mixta" required />
+            Mixta
+          </label>
+          <label class="radio">
+            <input type="radio" name="barbacoa" value="Res" required />
+            Res
+          </label>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>Libra o Plato</legend>
+          <label class="radio">
+            <input type="radio" name="tipo" value="Plato" required />
+            Plato
+          </label>
+          <label class="radio">
+            <input type="radio" name="tipo" value="Libra" required />
+            Libra
+          </label>
+        </fieldset>
+
+        <label>
+          Cantidad
+          <input name="cantidad" type="number" min="1" step="1" placeholder="Ej: 5" required />
+        </label>
+
+        <div class="actions">
+          <button type="submit">Registrar ✅</button>
+        </div>
+
+        <div id="msg" class="msg" role="status" aria-live="polite"></div>
+
+        <p class="note">Tip: Si agregas un nombre nuevo, luego aparecerá en las sugerencias.</p>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwL4aH4UqdoPEjLtYM9WlfIlm7KaB_28VN5OaNTRGRaJiUcavjntm7eNm2NI8wXcTvavA/exec";
+
+    function loadPersonas() {
+      const list = document.getElementById("personasList");
+      list.innerHTML = "";
+
+      const old = document.getElementById("jsonpPersonas");
+      if (old) old.remove();
+
+      const s = document.createElement("script");
+      s.id = "jsonpPersonas";
+      s.src = `${SCRIPT_URL}?op=catalog&callback=renderPersonas&_=${Date.now()}`;
+      document.body.appendChild(s);
+    }
+
+    function renderPersonas(names) {
+      const list = document.getElementById("personasList");
+      (names || []).forEach(n => {
+        const opt = document.createElement("option");
+        opt.value = n;
+        list.appendChild(opt);
+      });
+    }
+
+    function loadLideres() {
+      const list = document.getElementById("lideresList");
+      list.innerHTML = "";
+
+      const old = document.getElementById("jsonpLideres");
+      if (old) old.remove();
+
+      const s = document.createElement("script");
+      s.id = "jsonpLideres";
+      s.src = `${SCRIPT_URL}?op=leaders&callback=renderLideres&_=${Date.now()}`;
+      document.body.appendChild(s);
+    }
+
+    function renderLideres(names) {
+      const list = document.getElementById("lideresList");
+      (names || []).forEach(n => {
+        const opt = document.createElement("option");
+        opt.value = n;
+        list.appendChild(opt);
+      });
+    }
+
+    function loadAll() {
+      loadPersonas();
+      loadLideres();
+    }
+
+    loadAll();
+
+    const form = document.getElementById("formBarbacoa");
+    const msg = document.getElementById("msg");
+    const personaInput = document.getElementById("personaInput");
+    const liderInput = document.getElementById("liderInput");
+
+    function setMsg(text, type = "ok") {
+      msg.textContent = text;
+      msg.dataset.type = type; // ok | err | loading
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // normalizar textos
+      personaInput.value = personaInput.value.trim().replace(/\s+/g, " ");
+      liderInput.value = liderInput.value.trim().replace(/\s+/g, " ");
+
+      const fd = new FormData(form);
+      fd.append("format", "json");
+
+      setMsg("Guardando…", "loading");
+
+      try {
+        const res = await fetch(SCRIPT_URL, { method: "POST", body: fd });
+        const data = await res.json().catch(() => null);
+
+        if (!data || data.ok !== true) {
+          const err = (data && data.error) ? data.error : "No se pudo guardar. Intenta de nuevo.";
+          setMsg("❌ " + err, "err");
+          return;
+        }
+
+        setMsg(`✅ Guardado: ${data.persona} +${data.cantidad} ${data.tipo}(s) (${data.barbacoa})`, "ok");
+
+        // actualizar sugerencias por si agregaron nombre nuevo
+        loadAll();
+
+        // limpiar TODO el formulario (incluye líder)
+        form.reset();
+        personaInput.focus();
+
+      } catch (error) {
+        setMsg("❌ Error de conexión. Revisa tu internet e intenta de nuevo.", "err");
+      }
+    });
+  </script>
+
+</body>
+</html>

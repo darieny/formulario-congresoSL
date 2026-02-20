@@ -1,0 +1,140 @@
+:root{
+  --bg:#0f0f12;
+  --card:#16161b;
+  --text:#f2f2f2;
+  --muted:#b7b7c2;
+  --line:#2b2b34;
+  --accent:#ff7fb7;
+  --accent2:#ffcc66;
+}
+
+*{ box-sizing:border-box; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; }
+body{
+  margin:0;
+  background: radial-gradient(1200px 600px at 20% 10%, #1d1d2a, transparent), var(--bg);
+  color:var(--text);
+}
+
+.wrap{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+
+.card{
+  width:min(560px, 100%);
+  background: linear-gradient(180deg, rgba(255,127,183,0.06), transparent 40%), var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+h1{ margin:0 0 6px; font-size:26px; }
+.sub{ margin:0 0 18px; color:var(--muted); }
+
+.form{
+  display:grid;
+  gap:14px;
+}
+
+label{
+  display:grid;
+  gap:8px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+input, select{
+  width:100%;
+  padding:12px 12px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:#0f0f14;
+  color:var(--text);
+  outline:none;
+}
+
+input:focus, select:focus{
+  border-color: rgba(255,127,183,0.6);
+}
+
+.group{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px;
+}
+
+legend{
+  color:var(--muted);
+  padding:0 8px;
+  font-size:13px;
+}
+
+.radio{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:8px 0;
+  color:var(--text);
+  font-size:14px;
+}
+
+.hint{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:6px;
+}
+
+button{
+  border:0;
+  border-radius:14px;
+  padding:12px 14px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+button[type="submit"]{
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  color:#141418;
+}
+
+/* ✅ Mensaje dentro del portal */
+.msg{
+  min-height: 18px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #0f0f14;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.msg[data-type="loading"]{
+  color: var(--muted);
+}
+
+.msg[data-type="ok"]{
+  border-color: rgba(0,255,170,0.25);
+  color: #dfffeF;
+}
+
+.msg[data-type="err"]{
+  border-color: rgba(255,0,0,0.25);
+  color: #ffe0e0;
+}
+
+.note{
+  margin:6px 0 0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.4;
+}
