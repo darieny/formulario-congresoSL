@@ -6,8 +6,148 @@
         <title>Congreso Enciende</title>
         <link rel="stylesheet" href="/congresointegro/congresostyles.css">
     </head>
-    <body>
+<!-- MODAL PEDIDO PLAYERA -->
+<div id="modalPedido" class="modal-pedido">
+    <div class="modal-pedido-content">
 
+        <button class="cerrar-modal" onclick="cerrarModalPedido()">×</button>
+
+        <h2>Reserva tu playera</h2>
+        <p class="modal-subtitulo">Colección Enciende · Q45 c/u</p>
+
+        <label>Nombre completo:</label>
+        <input type="text" id="nombrePedido" placeholder="Escribe tu nombre">
+
+        <label>Cantidad:</label>
+        <input type="number" id="cantidadPedido" min="1" value="1" oninput="generarPrendasPedido()">
+
+        <div id="prendasPedido" class="prendas-pedido"></div>
+
+        <p class="total-modal">Total: <span id="totalPedido">Q45</span></p>
+
+        <button class="btn-whatsapp" onclick="enviarPedidoWhatsApp()">
+            Enviar pedido por WhatsApp
+        </button>
+
+    </div>
+</div>
+<!-- TERMINA MODAL PEDIDO PLAYERA -->
+
+<!-- FUNCION PEDIDO POR WHATSAPP -->
+
+<script>
+    const precioCamisa = 45;
+    const numeroWhatsApp = "50242160261";
+
+    function abrirModalPedido() {
+        document.getElementById("modalPedido").style.display = "flex";
+        generarPrendasPedido();
+    }
+
+    function cerrarModalPedido() {
+        document.getElementById("modalPedido").style.display = "none";
+    }
+
+    function generarPrendasPedido() {
+        const cantidadInput = document.getElementById("cantidadPedido");
+        const prendasContenedor = document.getElementById("prendasPedido");
+        const totalPedido = document.getElementById("totalPedido");
+
+        let cantidad = parseInt(cantidadInput.value);
+
+        if (isNaN(cantidad) || cantidad < 1) {
+            cantidad = 1;
+            cantidadInput.value = 1;
+        }
+
+        prendasContenedor.innerHTML = "";
+
+        for (let i = 1; i <= cantidad; i++) {
+            prendasContenedor.innerHTML += `
+                <div class="prenda-item">
+                    <h4>Playera ${i}</h4>
+
+                    <label>Color:</label>
+                    <select class="color-prenda">
+                        <option value="">Selecciona color</option>
+                        <option value="Blanca">Blanca</option>
+                        <option value="Negra">Negra</option>
+                    </select>
+
+                    <label>Talla:</label>
+                    <select class="talla-prenda">
+                        <option value="">Selecciona talla</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                </div>
+            `;
+        }
+
+        totalPedido.textContent = "Q" + (cantidad * precioCamisa);
+    }
+
+    function enviarPedidoWhatsApp() {
+        const nombre = document.getElementById("nombrePedido").value.trim();
+        const cantidad = parseInt(document.getElementById("cantidadPedido").value);
+        const colores = document.querySelectorAll(".color-prenda");
+        const tallas = document.querySelectorAll(".talla-prenda");
+
+        if (nombre === "") {
+            alert("Por favor escribe tu nombre.");
+            return;
+        }
+
+        let detallePedido = "";
+
+        for (let i = 0; i < cantidad; i++) {
+            const color = colores[i].value;
+            const talla = tallas[i].value;
+
+            if (color === "") {
+                alert("Por favor selecciona el color de la playera " + (i + 1));
+                return;
+            }
+
+            if (talla === "") {
+                alert("Por favor selecciona la talla de la playera " + (i + 1));
+                return;
+            }
+
+            detallePedido += `Playera ${i + 1}: ${color}, talla ${talla}\n`;
+        }
+
+        const total = cantidad * precioCamisa;
+
+        const mensaje = `Hola, quiero reservar playeras de la Colección Enciende.
+
+Nombre: ${nombre}
+Cantidad: ${cantidad}
+
+Detalle del pedido:
+${detallePedido}
+Total: Q${total}
+
+Quedo pendiente de las instrucciones de pago.`;
+
+        const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+
+        window.open(url, "_blank");
+    }
+
+    window.addEventListener("click", function(e) {
+        const modal = document.getElementById("modalPedido");
+
+        if (e.target === modal) {
+            cerrarModalPedido();
+        }
+    });
+</script>
+ <!-- FUNCION PEDIDO POR WHATSAPP -->   
+  
+<body>
         <!-- BANNER PRINCIPAL -->
         <img src="/imagenes/invitados 2.jpg.jpeg" alt="Invitados Congreso Enciende" class="bannerCongreso-img"> 
 
@@ -24,28 +164,39 @@
             <a href="/congresointegro/preingreso/index.html" class="btn-registrate">Regístrate Aquí</a>
         </section>
 
-        <!-- COLECCIÓN ENCIENDE -->
-        <section class="coleccion-enciende">
-            <div class="seccion-contenido">
-                <p class="etiqueta-seccion">Merch oficial</p>
-                <h2>Colección Enciende</h2>
-                <p>
-                    Lleva contigo una pieza especial de este congreso. Muy pronto podrás reservar tu camisa oficial
-                    de la Colección Enciende.
-                </p>
+       <!-- COLECCIÓN ENCIENDE -->
+<section class="coleccion-enciende">
+    <div class="seccion-contenido">
 
-                <div class="productos-camisas">
-                    <div class="producto-card">
-                        <div class="producto-imagen">
-                            <span>Foto camisa</span>
-                        </div>
-                        <h3>Camisa Enciende</h3>
-                        <p>Disponible próximamente</p>
-                        <button class="btn-whatsapp" disabled>Reservar por WhatsApp</button>
-                    </div>
-                </div>
+        <p class="etiqueta-seccion">Merch oficial</p>
+        <h2>Colección Enciende</h2>
+
+        <p class="descripcion-merch">
+            Playeras edición especial “Fuego que transforma”.
+        </p>
+
+        <div class="productos-camisas">
+
+            <div class="producto-card">
+                <img src="/imagenes/CamisaBlanca.png" alt="Camisa blanca Enciende" class="producto-imagen">
+                <h3>Modelo Blanco</h3>
+                <p class="precio-camisa">Q45</p>
             </div>
-        </section>
+
+            <div class="producto-card">
+                <img src="/imagenes/CamisaNegra.png" alt="Camisa negra Enciende" class="producto-imagen">
+                <h3>Modelo Negro</h3>
+                <p class="precio-camisa">Q45</p>
+            </div>
+
+        </div>
+
+        <button class="btn-whatsapp btn-reservar-general" onclick="abrirModalPedido()">
+            Reservar mi playera
+        </button>
+
+    </div>
+</section>
 
         <!-- VIDEO OFICIAL -->
         <section class="video-oficial">
@@ -72,19 +223,69 @@
 
                 <div class="invitados-grid">
                     <div class="invitado-card">
-                        <div class="invitado-foto">Foto</div>
-                        <h3>Invitado 1</h3>
-                        <p>Predicador invitado</p>
+                        <img src="/imagenes/PabloRosalesOK.png" alt="Pastor Pablo Rosales" class="invitado-foto">
+                         <h3>Pastor Pablo Rosales</h3>
+                         <p>Predicador invitado</p>
                     </div>
 
                     <div class="invitado-card">
-                        <div class="invitado-foto">Foto</div>
-                        <h3>Invitado 2</h3>
-                        <p>Predicador invitado</p>
+                        <img src="/imagenes/OmarAlvarezOK.png" alt="Profeta Omar Alvarez" class="invitado-foto">
+                         <h3>Profeta Omar Alvarez</h3>
+                         <p>Predicador invitado</p>
+                    </div>
+
+                    <div class="invitado-card">
+                        <img src="/imagenes/RosivelCernaOK.png" alt="Pastora Rosivel Cerna" class="invitado-foto">
+                         <h3>Pastora Rosivel Cerna</h3>
+                         <p>Predicador invitado</p>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- MINISTERIOS -->
+<section class="ministerios-congreso">
+    <div class="seccion-contenido">
+
+        <p class="etiqueta-seccion">Ministerios</p>
+        <h2>Ministerios invitados</h2>
+
+        <div class="ministerios-grid">
+
+            <!-- SAETAS -->
+            <div class="ministerio-card">
+                <img src="/imagenes/SaetasOK.png" alt="Ministerio Saetas" class="ministerio-img">
+
+                <div class="ministerio-info">
+                    <h3>Ministerio Saetas</h3>
+                    <p>Ministerio de teatro</p>
+                </div>
+            </div>
+
+            <!-- CASA DE AMOR -->
+            <div class="ministerio-card">
+                <img src="/imagenes/CasadeAmorOK.png" alt="Alabanza Casa de Amor" class="ministerio-img">
+
+                <div class="ministerio-info">
+                    <h3>Casa de Amor</h3>
+                    <p>Ministerio de alabanza</p>
+                </div>
+            </div>
+
+            <!-- CASA DE FE -->
+            <div class="ministerio-card">
+                <img src="/imagenes/CasadeFeOK.png" alt="Alabanza Casa de Fe" class="ministerio-img">
+
+                <div class="ministerio-info">
+                    <h3>Casa de Fe</h3>
+                    <p>Ministerio de alabanza</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
 
         <!-- HORARIOS -->
         <section class="horarios-congreso">
@@ -102,22 +303,42 @@
         <h4>Viernes | 26 Junio 2026</h4>
 
         <div class="schedule-item">
-            <span>7:00 PM</span>
-            <p>Apertura</p>
+            <span>5:30 PM</span>
+            <p>Pre Inscripción</p>
         </div>
 
         <div class="schedule-item">
-            <span>7:30 PM</span>
-            <p>Adoración</p>
+            <span>7:00 PM</span>
+            <p>Opening</p>
+        </div>
+
+        <div class="schedule-item">
+            <span>7:05 PM</span>
+            <p>Alabanza y Adoración</p>
+        </div>
+
+        <div class="schedule-item">
+            <span>7:35 PM</span>
+            <p>Saetas</p>
+        </div>
+
+        <div class="schedule-item">
+            <span>7:40 PM</span>
+            <p>I Plenaria</p>
         </div>
 
         <div class="schedule-item">
             <span>8:15 PM</span>
-            <p>Predicación</p>
+            <p>Coffee Break</p>
         </div>
 
         <div class="schedule-item">
-            <span>9:30 PM</span>
+            <span>8:30 PM</span>
+            <p>II Plenaria</p>
+        </div>
+
+        <div class="schedule-item">
+            <span>9:05 PM</span>
             <p>Finalización</p>
         </div>
     </div>
@@ -130,23 +351,43 @@
         <h4>Sábado | 27 Junio 2026</h4>
 
         <div class="schedule-item">
-            <span>3:00 PM</span>
-            <p>Ingreso</p>
-        </div>
-
-        <div class="schedule-item">
-            <span>4:00 PM</span>
-            <p>Adoración</p>
-        </div>
-
-        <div class="schedule-item">
-            <span>5:00 PM</span>
-            <p>Predicación</p>
+            <span>6:00 PM</span>
+            <p>Pre Inscripción</p>
         </div>
 
         <div class="schedule-item">
             <span>7:00 PM</span>
-            <p>Ministración</p>
+            <p>Bienvenida</p>
+        </div>
+
+        <div class="schedule-item">
+            <span>7:05 PM</span>
+            <p>Alabanza y Adoración</p>
+        </div>
+
+        <div class="schedule-item">
+            <span>7:30 PM</span>
+            <p>Saetas</p>
+        </div>
+
+        <div class="schedule-item">
+            <span>7:35 PM</span>
+            <p>I Plenaria</p>
+        </div>
+
+        <div class="schedule-item">
+            <span>8:05 PM</span>
+            <p>Coffee Break</p>
+        </div>
+
+        <div class="schedule-item">
+            <span>8:20 PM</span>
+            <p>II Plenaria</p>
+        </div>
+
+        <div class="schedule-item">
+            <span>8:55 PM</span>
+            <p>Finalización</p>
         </div>
     </div>
 
@@ -159,16 +400,31 @@
 
         <div class="schedule-item">
             <span>9:00 AM</span>
-            <p>Servicio General</p>
+            <p>Bienvenida</p>
         </div>
 
         <div class="schedule-item">
-            <span>11:00 AM</span>
-            <p>Predicación Final</p>
+            <span>9:05 AM</span>
+            <p>Alabanza y Adoración</p>
         </div>
 
         <div class="schedule-item">
-            <span>1:00 PM</span>
+            <span>9:35 AM</span>
+            <p>I Plenaria</p>
+        </div>
+
+        <div class="schedule-item">
+            <span>10:15 AM</span>
+            <p>Coffee Break</p>
+        </div>
+
+        <div class="schedule-item">
+            <span>10:30 AM</span>
+            <p>II Plenaria</p>
+        </div>
+
+        <div class="schedule-item">
+            <span>11:20 PM</span>
             <p>Clausura</p>
         </div>
     </div>
