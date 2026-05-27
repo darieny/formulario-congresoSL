@@ -6,10 +6,74 @@
         <title>Proyecto Play</title>
         <link rel="stylesheet" href="/stylesProyectoPlay.css">
     </head>
+
+    <!-- Función para la cuenta regresiva -->
+    <script>
+    const fechaCongreso = new Date("June 26, 2026 19:00:00").getTime();
+
+    const actualizarContador = setInterval(() => {
+        const ahora = new Date().getTime();
+        const diferencia = fechaCongreso - ahora;
+
+        const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+        const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+        const segundos = Math.floor((diferencia / 1000) % 60);
+
+        document.getElementById("dias").innerText = dias;
+        document.getElementById("horas").innerText = horas.toString().padStart(2, "0");
+        document.getElementById("minutos").innerText = minutos.toString().padStart(2, "0");
+        document.getElementById("segundos").innerText = segundos.toString().padStart(2, "0");
+
+        if (diferencia < 0) {
+            clearInterval(actualizarContador);
+            document.getElementById("contador").innerHTML = "<h3>¡El Congreso Enciende ya comenzó!</h3>";
+        }
+    }, 1000);
+</script>
+ <!-- Finaliza función para la cuenta regresiva -->
+
     <body>
+        <section class="hero-congreso">
+    <a href="congresointegro/congresointegro.html" class="hero-link">
+        <img src="/imagenes/info.jpg.jpeg" alt="Congreso Enciende" class="congresointegro-img">
+    </a>
+
+    <div class="hero-boton">
         <a href="congresointegro/congresointegro.html">
-            <img src="/imagenes/fondoProyectoPlayOK.jpg" alt="congresointegro" class="congresointegro-img">
+            Más información
         </a>
+    </div>
+</section>
+
+<section class="cuenta-regresiva">
+    <p class="contador-subtitulo">Faltan</p>
+
+    <div class="contador" id="contador">
+        <div class="contador-box">
+            <span id="dias">00</span>
+            <small>Días</small>
+        </div>
+
+        <div class="contador-box">
+            <span id="horas">00</span>
+            <small>Horas</small>
+        </div>
+
+        <div class="contador-box">
+            <span id="minutos">00</span>
+            <small>Minutos</small>
+        </div>
+
+        <div class="contador-box">
+            <span id="segundos">00</span>
+            <small>Segundos</small>
+        </div>
+    </div>
+
+    <h2>Congreso Enciende</h2>
+    <p class="contador-fecha">26, 27 y 28 de junio - 7:00 PM</p>
+</section>
 
         <section class="descripcion-proyectoplay">
         <h2>PROYECTO PLAY</h2>

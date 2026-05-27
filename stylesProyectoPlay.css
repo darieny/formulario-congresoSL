@@ -3,111 +3,389 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
-    background-color: #f0f4f8;
-    color: #333;
-    overflow-x: visible;
+    background: linear-gradient(
+    180deg,
+    #F64914 0%,
+    #ff7b42 28%,
+    #1902B2 100%
+);
+    color: #F2F3F4;
+    overflow-x: hidden;
 }
 
- /*Estilo base para computadoras y pantallas grandes*/ 
+/* Estilo base para computadoras y pantallas grandes */ 
+.hero-congreso {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: #06184f;
+}
+
+.hero-link {
+    display: block;
+}
+
 .congresointegro-img {
     width: 100%;
     height: auto;
-    object-fit: contain;
-    object-position: center;
     display: block;
-    margin: 0;
-    padding: 0;
     cursor: pointer;
 }
 
-/* Media Queries para un ajuste más fino en móviles */
+/* Botón visible sobre el banner */
+.hero-boton {
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
 
-/* Tablets */
+.hero-boton a {
+    display: inline-block;
+
+    background: linear-gradient(
+        135deg,
+        #ff4d00,
+        #ff9500
+    );
+
+    color: white;
+    text-decoration: none;
+
+    padding: 26px 106px;
+
+    border-radius: 50px;
+
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+
+    transition: all 0.3s ease;
+}
+
+.hero-boton a:hover {
+    transform: scale(1.04);
+    box-shadow: 0 8px 22px rgba(255, 72, 0, 0.45);
+}
+
+/* TABLETS */
 @media (max-width: 1024px) {
-    .congresointegro-img {
-        max-height: 60vh;
-        object-position: center top;
+
+    .hero-boton {
+        bottom: 7%;
+    }
+
+    .hero-boton a {
+        padding: 14px 50px;
+        font-size: 0.8rem;
     }
 }
 
-/* Teléfonos grandes */
+/* TELÉFONOS */
 @media (max-width: 668px) {
-    .congresointegro-img {
-        max-height: 50vh;
+
+    .hero-boton {
+        bottom: 6%;
+    }
+
+    .hero-boton a {
+        padding: 15px 40px;
+        font-size: 0.65rem;
+        border-radius: 30px;
     }
 }
 
-/* Teléfonos pequeños */
+/* TELÉFONOS PEQUEÑOS */
 @media (max-width: 480px) {
-    .congresointegro-img {
-        max-height: 40vh;
+
+    .hero-boton {
+        bottom: 5%;
+    }
+
+    .hero-boton a {
+        padding: 8px 22px;
+        font-size: 0.55rem;
+        border-radius: 25px;
     }
 }
 
-/* Estilos para texto de Descripcion */
+/* DESCRIPCIÓN PROYECTO PLAY */
 .descripcion-proyectoplay {
-    background-color: #0e4d28; /* Color de fondo solicitado */
-    color: #d5dcbb;            /* Texto blanco para mejor contraste */
-    padding: 50px 20px;
+    background: linear-gradient(
+        135deg,
+        rgba(246, 73, 20, 0.92),
+        rgba(255, 123, 66, 0.88)
+    );
+    color: #F2F3F4;
+    padding: 70px 20px;
     text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .descripcion-proyectoplay h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
+    font-size: 2.7em;
+    margin-bottom: 25px;
     font-weight: bold;
+    color: #F2F3F4;
+    text-shadow: 0 0 18px rgba(3, 0, 51, 0.55);
+    letter-spacing: 2px;
 }
 
 .descripcion-proyectoplay p {
-    max-width: 800px;
+    max-width: 850px;
     margin: 0 auto;
-    line-height: 1.8;
+    line-height: 1.9;
     font-size: 1.1em;
+    color: #EAE9EC;
 }
 
-/* Estilos para Mapa y Redes Sociales */
-
+/* MAPA Y REDES SOCIALES */
 .ubicacion-redes {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    background-color: #0e4d28;
-    color: #d5dcbb;
-    padding: 50px 20px;
+    align-items: stretch;
+    gap: 30px;
+    background: linear-gradient(
+        180deg,
+        #F64914,
+        #ff7b42
+    );
+    color: #F2F3F4;
+    padding: 70px 20px;
     text-align: center;
 }
 
 .mapa, .redes-sociales {
     flex: 1 1 300px;
     max-width: 500px;
-    margin: 20px;
+    margin: 0;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 24px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.28);
 }
 
+.mapa h3,
 .redes-sociales h3 {
     font-size: 1.8em;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
+    color: #F2F3F4;
+}
+
+.mapa iframe {
+    border-radius: 18px;
 }
 
 .redes-sociales a {
     display: inline-block;
-    color: #c18700; /* Color mostaza */
+    color: #1902B2;
     text-decoration: none;
     font-size: 1.2em;
-    margin: 10px 0;
-    transition: color 0.3s;
+    margin: 12px 0;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
 
 .redes-sociales a:hover {
-    color: #d9a800; /* Un poco más oscuro en hover */
+    color: #030033;
+    transform: translateY(-3px) scale(1.05);
+    text-shadow: 0 0 12px rgba(25, 2, 178, 0.45);
 }
 
-/* Responsivo */
+/* RESPONSIVO */
 @media (max-width: 768px) {
+    .descripcion-proyectoplay {
+        padding: 55px 22px;
+    }
+
+    .descripcion-proyectoplay h2 {
+        font-size: 2.1em;
+    }
+
+    .descripcion-proyectoplay p {
+        font-size: 1em;
+        line-height: 1.8;
+    }
+
     .ubicacion-redes {
         flex-direction: column;
+        padding: 55px 20px;
+    }
+
+    .mapa, .redes-sociales {
+        padding: 25px 18px;
     }
 }
 
+/* CUENTA REGRESIVA */
+.cuenta-regresiva {
+    padding: 60px 20px;
+    background: linear-gradient(
+        135deg,
+        #F64914,
+        #ff7b42
+    );
+    color: #F2F3F4;
+    text-align: center;
+}
 
+.contador-subtitulo {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
 
+.cuenta-regresiva h2 {
+    font-size: 2.5rem;
+    margin: 28px 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 18px rgba(3, 0, 51, 0.45);
+}
+
+.contador-fecha {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #1902B2;
+}
+
+.contador {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.contador-box {
+    background: #1902B2;
+    color: #F2F3F4;
+    width: 130px;
+    padding: 20px 0px;
+    border-radius: 24px;
+    box-shadow: 0 8px 25px rgba(3, 0, 51, 0.28);
+}
+
+.contador-box span {
+    display: block;
+    font-size: 2.8rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.contador-box small {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* =========================
+   TABLETS
+   iPad, tablets Samsung, etc
+========================= */
+@media (max-width: 1024px) {
+
+    .cuenta-regresiva {
+        padding: 55px 20px;
+    }
+
+    .contador {
+        gap: 18px;
+    }
+
+    .contador-box {
+        width: 120px;
+        padding: 22px 10px;
+    }
+
+    .contador-box span {
+        font-size: 2.5rem;
+    }
+
+    .cuenta-regresiva h2 {
+        font-size: 2.2rem;
+    }
+
+    .contador-fecha {
+        font-size: 1.1rem;
+    }
+}
+
+/* =========================
+   TELÉFONOS
+   iPhone, Samsung, Redmi, etc
+========================= */
+@media (max-width: 668px) {
+
+    .cuenta-regresiva {
+        padding: 45px 15px;
+    }
+
+    .contador {
+        gap: 12px;
+    }
+
+    .contador-box {
+        width: 120px;
+        padding: 20px 8px;
+    }
+
+    .contador-box span {
+        font-size: 2.2rem;
+    }
+
+    .cuenta-regresiva h2 {
+        font-size: 2rem;
+    }
+
+    .contador-fecha {
+        font-size: 1rem;
+    }
+}
+
+/* =========================
+   TELÉFONOS PEQUEÑOS
+   iPhone SE, Android pequeños, etc
+========================= */
+@media (max-width: 480px) {
+
+    .cuenta-regresiva {
+        padding: 40px 12px;
+    }
+
+    .contador {
+        gap: 10px;
+    }
+
+    .contador-box {
+        width: 20%;
+        padding: 18px 5px;
+        border-radius: 18px;
+    }
+
+    .contador-box span {
+        font-size: 2rem;
+    }
+
+    .contador-box small {
+        font-size: 0.75rem;
+    }
+
+    .cuenta-regresiva h2 {
+        font-size: 1.7rem;
+    }
+
+    .contador-fecha {
+        font-size: 0.95rem;
+    }
+}

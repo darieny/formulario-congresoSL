@@ -3,11 +3,17 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
-    background-color: #fff8f0;
-    color: #333;
+    background: linear-gradient(
+        180deg,
+        #F64914 0%,
+        #ff7b42 35%,
+        #1902B2 100%
+    );
+    color: #F2F3F4;
+    overflow-x: hidden;
 }
 
- /*Estilo base para computadoras y pantallas grandes*/ 
+/* BANNER PRINCIPAL */
 .bannerCongreso-img {
     width: 100%;
     height: auto;
@@ -16,71 +22,384 @@ body {
     display: block;
     margin: 0;
     padding: 0;
-    cursor: pointer;
 }
 
-/* Media Queries para un ajuste más fino en móviles */
+/* DESCRIPCIÓN DEL CONGRESO */
+.descripcion-congreso {
+    background: linear-gradient(
+        135deg,
+        rgba(246, 73, 20, 0.94),
+        rgba(255, 123, 66, 0.88)
+    );
+    color: #F2F3F4;
+    padding: 75px 20px;
+    text-align: center;
+}
 
-/* Tablets */
+.descripcion-congreso h2 {
+    font-size: 2.8em;
+    margin-bottom: 25px;
+    font-weight: bold;
+    color: #F2F3F4;
+    letter-spacing: 2px;
+    text-shadow: 0 0 18px rgba(3, 0, 51, 0.45);
+}
+
+.descripcion-congreso p {
+    max-width: 850px;
+    margin: 0 auto;
+    line-height: 1.9;
+    font-size: 1.1em;
+    color: #F2F3F4;
+}
+
+/* BOTÓN REGISTRO */
+.btn-registrate {
+    display: inline-block;
+    padding: 16px 34px;
+    background: linear-gradient(135deg, #1902B2, #0B0070);
+    color: #F2F3F4;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.15em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    margin-top: 35px;
+    box-shadow: 0 8px 24px rgba(3, 0, 51, 0.35);
+}
+
+.btn-registrate:hover {
+    background: linear-gradient(135deg, #0B0070, #030033);
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 10px 28px rgba(3, 0, 51, 0.5);
+}
+
+/* TABLETS */
 @media (max-width: 1024px) {
     .bannerCongreso-img {
         max-height: 60vh;
         object-position: center top;
     }
+
+    .descripcion-congreso {
+        padding: 60px 22px;
+    }
+
+    .descripcion-congreso h2 {
+        font-size: 2.3em;
+    }
 }
 
-/* Teléfonos grandes */
+/* TELÉFONOS GRANDES */
 @media (max-width: 668px) {
     .bannerCongreso-img {
         max-height: 50vh;
     }
+
+    .descripcion-congreso h2 {
+        font-size: 2em;
+    }
+
+    .descripcion-congreso p {
+        font-size: 1em;
+        line-height: 1.8;
+    }
+
+    .btn-registrate {
+        padding: 14px 28px;
+        font-size: 1em;
+    }
 }
 
-/* Teléfonos pequeños */
+/* TELÉFONOS PEQUEÑOS */
 @media (max-width: 480px) {
     .bannerCongreso-img {
         max-height: 40vh;
     }
+
+    .descripcion-congreso {
+        padding: 50px 18px;
+    }
+
+    .descripcion-congreso h2 {
+        font-size: 1.8em;
+    }
+
+    .btn-registrate {
+        width: 85%;
+        box-sizing: border-box;
+    }
 }
 
-/* Estilos para texto de Descripcion */
-
-.descripcion-congreso {
-    background-color: #0e4d28; /* Color de fondo solicitado */
-    color: #d5dcbb;            /* Texto blanco para mejor contraste */
-    padding: 50px 20px;
-    text-align: center;
-}
-
-.descripcion-congreso h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-.descripcion-congreso p {
-    max-width: 800px;
+/* ESTILOS GENERALES DE SECCIONES */
+.seccion-contenido {
+    width: 90%;
+    max-width: 1100px;
     margin: 0 auto;
-    line-height: 1.8;
-    font-size: 1.1em;
 }
 
-/* Botón para registrarte */
-.btn-registrate {
-    display: inline-block;
-    padding: 15px 30px;
-    background-color: #d5dcbb; /* Un tono mostaza/dorado que resalta sobre el verde */
-    color: #0e4d28;            /* Texto en verde musgo */
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 1.2em;
+.etiqueta-seccion {
+    color: #1902B2;
     font-weight: bold;
-    transition: background 0.3s, transform 0.3s;
-    margin-top: 30px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
 }
 
-.btn-registrate:hover {
-    background-color: #b68c03; /* Color más oscuro al pasar el mouse */
-    transform: scale(1.05);    /* Pequeño efecto de crecimiento */
+.coleccion-enciende,
+.video-oficial,
+.invitados-congreso,
+.horarios-congreso,
+.faq-congreso {
+    padding: 80px 20px;
+}
+
+/* COLECCIÓN ENCIENDE */
+.coleccion-enciende {
+    background: linear-gradient(135deg, #F64914, #ff7b42);
+}
+
+.productos-camisas {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+.producto-card {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 28px;
+    padding: 28px;
+    width: 280px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+}
+
+.producto-imagen {
+    height: 260px;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.18);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-whatsapp {
+    background: linear-gradient(135deg, #1902B2, #0B0070);
+    color: #F2F3F4;
+    border: none;
+    padding: 13px 24px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: not-allowed;
+}
+
+/* VIDEO OFICIAL */
+.video-oficial {
+    background: linear-gradient(135deg, #030033, #1902B2);
+}
+
+.video-placeholder {
+    margin: 35px auto;
+    max-width: 850px;
+    aspect-ratio: 16 / 9;
+    border-radius: 28px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+}
+
+.frase-video {
+    font-size: 1.7rem;
+    line-height: 1.6;
+    font-weight: bold;
+    max-width: 850px;
+    margin: 35px auto 0;
+}
+
+/* INVITADOS */
+.invitados-congreso {
+    background: linear-gradient(135deg, #F64914, #ff7b42);
+}
+
+.invitados-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.invitado-card {
+    width: 260px;
+    padding: 25px;
+    border-radius: 28px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+}
+
+.invitado-foto {
+    height: 260px;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.18);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* HORARIOS */
+.horarios-congreso {
+    background: linear-gradient(135deg, #030033, #1902B2);
+}
+
+/* HORARIOS ESTILO CONFERENCIA */
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    margin-top: 50px;
+    text-align: left;
+}
+
+.schedule-column h3 {
+    font-size: 2rem;
+    margin-bottom: 18px;
+    color: #F2F3F4;
+}
+
+.linea {
+    width: 100%;
+    height: 2px;
+    background: rgba(255,255,255,0.4);
+    margin-bottom: 35px;
+}
+
+.schedule-column h4 {
+    margin-bottom: 28px;
+    font-size: 1.2rem;
+    color: #F64914;
+}
+
+.schedule-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+}
+
+.schedule-item span {
+    font-weight: bold;
+    color: #F2F3F4;
+    min-width: 110px;
+}
+
+.schedule-item p {
+    margin: 0;
+    color: #EAE9EC;
+}
+
+/* RESPONSIVO HORARIOS */
+@media (max-width: 1024px) {
+
+    .schedule-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .schedule-column {
+        text-align: center;
+    }
+
+    .schedule-item {
+        justify-content: center;
+    }
+
+    .linea {
+        max-width: 300px;
+        margin: 0 auto 30px;
+    }
+}
+
+/* FAQ */
+.faq-congreso {
+    background: linear-gradient(135deg, #F64914, #ff7b42);
+}
+
+.faq-lista {
+    max-width: 850px;
+    margin: 35px auto 0;
+    text-align: left;
+}
+
+.faq-item {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 22px;
+    padding: 0;
+    margin-bottom: 18px;
+    overflow: hidden;
+}
+
+.faq-item summary {
+    cursor: pointer;
+    padding: 22px;
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: #1902B2;
+    list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: "+";
+    float: right;
+    font-size: 1.5rem;
+    color: #1902B2;
+}
+
+.faq-item[open] summary::after {
+    content: "−";
+}
+
+.faq-item p {
+    margin: 0;
+    padding: 0 22px 22px;
+    color: #F2F3F4;
+    line-height: 1.7;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .coleccion-enciende,
+    .video-oficial,
+    .invitados-congreso,
+    .horarios-congreso,
+    .faq-congreso {
+        padding: 60px 18px;
+    }
+
+    .frase-video {
+        font-size: 1.3rem;
+    }
+
+    .producto-card,
+    .invitado-card,
+    .horario-card {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .faq-lista {
+        text-align: center;
+    }
 }
 
