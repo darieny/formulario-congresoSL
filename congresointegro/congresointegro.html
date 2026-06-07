@@ -5,147 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Congreso Enciende</title>
         <link rel="stylesheet" href="/congresointegro/congresostyles.css">
-    </head>
-<!-- MODAL PEDIDO PLAYERA -->
-<div id="modalPedido" class="modal-pedido">
-    <div class="modal-pedido-content">
-
-        <button class="cerrar-modal" onclick="cerrarModalPedido()">×</button>
-
-        <h2>Reserva tu playera</h2>
-        <p class="modal-subtitulo">Colección Enciende · Q45 c/u</p>
-
-        <label>Nombre completo:</label>
-        <input type="text" id="nombrePedido" placeholder="Escribe tu nombre">
-
-        <label>Cantidad:</label>
-        <input type="number" id="cantidadPedido" min="1" value="1" oninput="generarPrendasPedido()">
-
-        <div id="prendasPedido" class="prendas-pedido"></div>
-
-        <p class="total-modal">Total: <span id="totalPedido">Q45</span></p>
-
-        <button class="btn-whatsapp" onclick="enviarPedidoWhatsApp()">
-            Enviar pedido por WhatsApp
-        </button>
-
-    </div>
-</div>
-<!-- TERMINA MODAL PEDIDO PLAYERA -->
-
-<!-- FUNCION PEDIDO POR WHATSAPP -->
-
-<script>
-    const precioCamisa = 45;
-    const numeroWhatsApp = "50242160261";
-
-    function abrirModalPedido() {
-        document.getElementById("modalPedido").style.display = "flex";
-        generarPrendasPedido();
-    }
-
-    function cerrarModalPedido() {
-        document.getElementById("modalPedido").style.display = "none";
-    }
-
-    function generarPrendasPedido() {
-        const cantidadInput = document.getElementById("cantidadPedido");
-        const prendasContenedor = document.getElementById("prendasPedido");
-        const totalPedido = document.getElementById("totalPedido");
-
-        let cantidad = parseInt(cantidadInput.value);
-
-        if (isNaN(cantidad) || cantidad < 1) {
-            cantidad = 1;
-            cantidadInput.value = 1;
-        }
-
-        prendasContenedor.innerHTML = "";
-
-        for (let i = 1; i <= cantidad; i++) {
-            prendasContenedor.innerHTML += `
-                <div class="prenda-item">
-                    <h4>Playera ${i}</h4>
-
-                    <label>Color:</label>
-                    <select class="color-prenda">
-                        <option value="">Selecciona color</option>
-                        <option value="Blanca">Blanca</option>
-                        <option value="Negra">Negra</option>
-                    </select>
-
-                    <label>Talla:</label>
-                    <select class="talla-prenda">
-                        <option value="">Selecciona talla</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                        <option value="XL">XL</option>
-                    </select>
-                </div>
-            `;
-        }
-
-        totalPedido.textContent = "Q" + (cantidad * precioCamisa);
-    }
-
-    function enviarPedidoWhatsApp() {
-        const nombre = document.getElementById("nombrePedido").value.trim();
-        const cantidad = parseInt(document.getElementById("cantidadPedido").value);
-        const colores = document.querySelectorAll(".color-prenda");
-        const tallas = document.querySelectorAll(".talla-prenda");
-
-        if (nombre === "") {
-            alert("Por favor escribe tu nombre.");
-            return;
-        }
-
-        let detallePedido = "";
-
-        for (let i = 0; i < cantidad; i++) {
-            const color = colores[i].value;
-            const talla = tallas[i].value;
-
-            if (color === "") {
-                alert("Por favor selecciona el color de la playera " + (i + 1));
-                return;
-            }
-
-            if (talla === "") {
-                alert("Por favor selecciona la talla de la playera " + (i + 1));
-                return;
-            }
-
-            detallePedido += `Playera ${i + 1}: ${color}, talla ${talla}\n`;
-        }
-
-        const total = cantidad * precioCamisa;
-
-        const mensaje = `Hola, quiero reservar playeras de la Colección Enciende.
-
-Nombre: ${nombre}
-Cantidad: ${cantidad}
-
-Detalle del pedido:
-${detallePedido}
-Total: Q${total}
-
-Quedo pendiente de las instrucciones de pago.`;
-
-        const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
-
-        window.open(url, "_blank");
-    }
-
-    window.addEventListener("click", function(e) {
-        const modal = document.getElementById("modalPedido");
-
-        if (e.target === modal) {
-            cerrarModalPedido();
-        }
-    });
-</script>
- <!-- FUNCION PEDIDO POR WHATSAPP -->   
+        <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    </head>   
   
 <body>
         <!-- BANNER PRINCIPAL -->
@@ -163,6 +25,7 @@ Quedo pendiente de las instrucciones de pago.`;
 
             <a href="/congresointegro/preingreso/index.html" class="btn-registrate">Regístrate Aquí</a>
         </section>
+
 
        <!-- COLECCIÓN ENCIENDE -->
 <section class="coleccion-enciende">
@@ -216,32 +79,108 @@ Quedo pendiente de las instrucciones de pago.`;
         </section>
 
         <!-- INVITADOS -->
-        <section class="invitados-congreso">
-            <div class="seccion-contenido">
-                <p class="etiqueta-seccion">Invitados</p>
-                <h2>Conoce a nuestros invitados</h2>
+<section class="invitados-congreso">
+    <div class="seccion-contenido">
+        <p class="etiqueta-seccion">Invitados</p>
+        <h2>Conoce a nuestros invitados</h2>
 
-                <div class="invitados-grid">
-                    <div class="invitado-card">
+        <div class="invitados-grid">
+
+            <!-- PABLO ROSALES -->
+            <div class="invitado-card">
+                <div class="invitado-card-inner">
+
+                    <div class="invitado-front">
                         <img src="/imagenes/PabloRosalesOK.png" alt="Pastor Pablo Rosales" class="invitado-foto">
-                         <h3>Pastor Pablo Rosales</h3>
-                         <p>Predicador invitado</p>
+                        <h3>Pastor Pablo Rosales</h3>
+                        <p>Predicador invitado</p>
                     </div>
 
-                    <div class="invitado-card">
-                        <img src="/imagenes/OmarAlvarezOK.png" alt="Profeta Omar Alvarez" class="invitado-foto">
-                         <h3>Profeta Omar Alvarez</h3>
-                         <p>Predicador invitado</p>
+                    <div class="invitado-back">
+                        <h3>Redes Sociales</h3>
+                        <div class="sociales">
+
+        <a href="https://www.instagram.com/pablorosalesoficial?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="https://www.facebook.com/pablorosalesoficial" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+
+        <a href="https://www.tiktok.com/@pablorosalesoficial?is_from_webapp=1&sender_device=pc" target="_blank">
+            <i class="fab fa-tiktok"></i>
+        </a>
+
+    </div>
                     </div>
 
-                    <div class="invitado-card">
-                        <img src="/imagenes/RosivelCernaOK.png" alt="Pastora Rosivel Cerna" class="invitado-foto">
-                         <h3>Pastora Rosivel Cerna</h3>
-                         <p>Predicador invitado</p>
-                    </div>
                 </div>
             </div>
-        </section>
+
+            <!-- OMAR ALVAREZ -->
+            <div class="invitado-card">
+                <div class="invitado-card-inner">
+
+                    <div class="invitado-front">
+                        <img src="/imagenes/OmarAlvarezOK.png" alt="Profeta Omar Alvarez" class="invitado-foto">
+                        <h3>Profeta Omar Alvarez</h3>
+                        <p>Predicador invitado</p>
+                    </div>
+
+                    <div class="invitado-back">
+                        <h3>Redes Sociales</h3>
+                        <div class="sociales">
+
+        <a href="https://www.instagram.com/omaralvarezjr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="https://www.facebook.com/PastorOmarAlvarezJr" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+
+        <a href="https://www.tiktok.com/@profetaomaralvarezjr?is_from_webapp=1&sender_device=pc" target="_blank">
+            <i class="fab fa-tiktok"></i>
+        </a>
+
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ROSIVEL CERNA -->
+            <div class="invitado-card">
+                <div class="invitado-card-inner">
+
+                    <div class="invitado-front">
+                        <img src="/imagenes/RosivelCernaOK.png" alt="Pastora Rosivel Cerna" class="invitado-foto">
+                        <h3>Pastora Rosivel Cerna</h3>
+                        <p>Predicadora invitada</p>
+                    </div>
+
+                    <div class="invitado-back">
+                        <h3>Redes Sociales</h3>
+                        <div class="sociales">
+
+        <a href="https://www.facebook.com/rosivel.cernadeclara" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+
+        <a href="https://www.tiktok.com/@pastora.rosi?is_from_webapp=1&sender_device=pc" target="_blank">
+            <i class="fab fa-tiktok"></i>
+        </a>
+
+    </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
         <!-- MINISTERIOS -->
 <section class="ministerios-congreso">
@@ -443,6 +382,14 @@ Quedo pendiente de las instrucciones de pago.`;
     <details class="faq-item">
         <summary>¿Dónde será el congreso?</summary>
         <p>En Iglesia Casa de Amor, San Luis, Petén.</p>
+        <a
+        href="https://maps.app.goo.gl/83FWLsvn8qSGGLnE6"
+        target="_blank"
+        class="btn-faq-mapa">
+
+        📍 Cómo llegar
+
+    </a>
     </details>
 
     <details class="faq-item">
@@ -463,6 +410,164 @@ Quedo pendiente de las instrucciones de pago.`;
 </div>
             </div>
         </section>
+<!-- MODAL PEDIDO PLAYERA -->
+<div id="modalPedido" class="modal-pedido">
+    <div class="modal-pedido-content">
 
+        <button class="cerrar-modal" onclick="cerrarModalPedido()">×</button>
+
+        <h2>Reserva tu playera</h2>
+        <p class="modal-subtitulo">Colección Enciende · Q45 c/u</p>
+
+        <label>Nombre completo:</label>
+        <input type="text" id="nombrePedido" placeholder="Escribe tu nombre">
+
+        <label>Cantidad:</label>
+        <input type="number" id="cantidadPedido" min="1" value="1" oninput="generarPrendasPedido()">
+
+        <div id="prendasPedido" class="prendas-pedido"></div>
+
+        <p class="total-modal">Total: <span id="totalPedido">Q45</span></p>
+
+        <button class="btn-whatsapp" onclick="enviarPedidoWhatsApp()">
+            Enviar pedido por WhatsApp
+        </button>
+
+    </div>
+</div>
+<!-- TERMINA MODAL PEDIDO PLAYERA -->
+
+<!-- ALERTA PEDIDO -->
+        <div id="alertaPedido" class="alerta-pedido">
+            🔥 ¡Gracias por tu pedido! Te esperamos en Enciende.
+        </div>
+
+<!-- FUNCION PEDIDO POR WHATSAPP -->
+
+<script>
+    const precioCamisa = 45;
+    const numeroWhatsApp = "50242160261";
+
+    function abrirModalPedido() {
+        document.getElementById("modalPedido").style.display = "flex";
+        generarPrendasPedido();
+    }
+
+    function cerrarModalPedido() {
+        document.getElementById("modalPedido").style.display = "none";
+    }
+
+    function generarPrendasPedido() {
+        const cantidadInput = document.getElementById("cantidadPedido");
+        const prendasContenedor = document.getElementById("prendasPedido");
+        const totalPedido = document.getElementById("totalPedido");
+
+        let cantidad = parseInt(cantidadInput.value);
+
+        if (isNaN(cantidad) || cantidad < 1) {
+            cantidad = 1;
+            cantidadInput.value = 1;
+        }
+
+        prendasContenedor.innerHTML = "";
+
+        for (let i = 1; i <= cantidad; i++) {
+            prendasContenedor.innerHTML += `
+                <div class="prenda-item">
+                    <h4>Playera ${i}</h4>
+
+                    <label>Color:</label>
+                    <select class="color-prenda">
+                        <option value="">Selecciona color</option>
+                        <option value="Blanca">Blanca</option>
+                        <option value="Negra">Negra</option>
+                    </select>
+
+                    <label>Talla:</label>
+                    <select class="talla-prenda">
+                        <option value="">Selecciona talla</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                </div>
+            `;
+        }
+
+        totalPedido.textContent = "Q" + (cantidad * precioCamisa);
+    }
+
+    function enviarPedidoWhatsApp() {
+        const nombre = document.getElementById("nombrePedido").value.trim();
+        const cantidad = parseInt(document.getElementById("cantidadPedido").value);
+        const colores = document.querySelectorAll(".color-prenda");
+        const tallas = document.querySelectorAll(".talla-prenda");
+
+        if (nombre === "") {
+            alert("Por favor escribe tu nombre.");
+            return;
+        }
+
+        let detallePedido = "";
+
+        for (let i = 0; i < cantidad; i++) {
+            const color = colores[i].value;
+            const talla = tallas[i].value;
+
+            if (color === "") {
+                alert("Por favor selecciona el color de la playera " + (i + 1));
+                return;
+            }
+
+            if (talla === "") {
+                alert("Por favor selecciona la talla de la playera " + (i + 1));
+                return;
+            }
+
+            detallePedido += `Playera ${i + 1}: ${color}, talla ${talla}\n`;
+        }
+
+        const total = cantidad * precioCamisa;
+
+        const mensaje = `Hola, quiero reservar playeras de la Colección Enciende.
+
+Nombre: ${nombre}
+Cantidad: ${cantidad}
+
+Detalle del pedido:
+${detallePedido}
+Total: Q${total}
+
+Quedo pendiente de las instrucciones de pago.`;
+
+        const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+
+        window.open(url, "_blank");
+
+        cerrarModalPedido();
+
+        mostrarAlertaPedido();
+    }
+
+    function mostrarAlertaPedido() {
+    const alerta = document.getElementById("alertaPedido");
+
+    alerta.classList.add("mostrar-alerta");
+
+    setTimeout(() => {
+        alerta.classList.remove("mostrar-alerta");
+    }, 4000);
+}
+
+    window.addEventListener("click", function(e) {
+        const modal = document.getElementById("modalPedido");
+
+        if (e.target === modal) {
+            cerrarModalPedido();
+        }
+    });
+</script>
+ <!-- FUNCION PEDIDO POR WHATSAPP -->
     </body>
 </html>
