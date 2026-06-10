@@ -278,17 +278,24 @@ body {
     background: linear-gradient(135deg, #030033, #1902B2);
 }
 
-.video-placeholder {
+.video-container {
+    max-width: 900px;
     margin: 35px auto;
-    max-width: 850px;
-    aspect-ratio: 16 / 9;
     border-radius: 28px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+    overflow: hidden;
+
+    border: 3px solid #1902B2;
+
+    box-shadow:
+        0 0 25px rgba(25, 2, 178, 0.4),
+        0 10px 35px rgba(0,0,0,0.35);
+}
+
+.video-container iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    display: block;
 }
 
 .frase-video {
